@@ -4,7 +4,10 @@ import os
 from dotenv import load_dotenv
 from datetime import datetime
 
-bot = commands.AutoShardedBot(command_prefix = commands.when_mentioned_or("~"), case_insensitive = True, description = "Delete all messages that contain a lol!")
+intents = discord.Intents.default()
+intents.members = True
+
+bot = commands.AutoShardedBot(intents = intents, command_prefix = commands.when_mentioned_or("~"), case_insensitive = True, description = "Delete all messages that contain a lol!")
 bot.launchtime = datetime.now()
 bot.remove_command("help")
 bot.load_extension("jishaku")

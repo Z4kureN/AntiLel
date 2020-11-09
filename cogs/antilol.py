@@ -10,11 +10,6 @@ class AntiLol(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
 
-        if not message.guild:
-            return
-
-        member = message.guild.get_member(message.author.id)
-
         if message.author == self.bot.user:
             return
 
@@ -24,10 +19,9 @@ class AntiLol(commands.Cog):
         if str(message.guild.id) not in l:
             return
 
-        if member.guild_permissions.manage_messages:
+        if message.author.guild_permissions.manage_messages:
             if l[str(message.guild.id)]["mods"] == "enabled":
                 return
-
             elif l[str(message.guild.id)]["mods"] == "disabled":
                 pass
 

@@ -2,3 +2,5 @@ __pycache__/
 cogs/__pycache__/
 data/
 .env
+start.sh
+

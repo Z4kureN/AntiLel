@@ -2,10 +2,10 @@ import discord
 from discord.ext import commands
 import json
 
-class AntiLol(commands.Cog):
+class AntiLel(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.lols = ["lol", "l0l", "|o|", "|0|", ":regional_indicator_l: :regional_indicator_o: :regional_indicator_l:", ":regional_indicator_l::regional_indicator_o::regional_indicator_l:"]
+        self.lels = ["lel", "l3l", "|e|", "|3|", "lеl", "|е|", "ʟᴇʟ", "|ᴇ|", ":regional_indicator_l: :regional_indicator_e: :regional_indicator_l:", ":regional_indicator_l::regional_indicator_e::regional_indicator_l:"]
 
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -25,10 +25,10 @@ class AntiLol(commands.Cog):
             elif l[str(message.guild.id)]["mods"] == "disabled":
                 pass
 
-        for a in self.lols:
+        for a in self.lels:
             if a.lower() in message.content.lower():
                 await message.delete()
-                emb = discord.Embed(description = f"Don't say **LOL**! Say **LEL** because it's better!", colour = discord.Colour.red())
+                emb = discord.Embed(description = f"Don't say **LEL**! Say **LUL** because it's better!", colour = discord.Colour.red())
                 emb.set_footer(text = "This will be deleted in 10 seconds.")
                 await message.channel.send(content = f"😡 | {message.author.mention}", embed = emb, delete_after = 10)
 
@@ -50,10 +50,10 @@ class AntiLol(commands.Cog):
             elif l[str(before.guild.id)]["mods"] == "disabled":
                 pass
 
-        for a in self.lols:
+        for a in self.lels:
             if a.lower() in after.content.lower():
                 await after.delete()
-                emb = discord.Embed(description = f"Don't say **LOL**! Say **LEL** because it's better!", colour = discord.Colour.red())
+                emb = discord.Embed(description = f"Don't say **LEL**! Say **LUL** because it's better!", colour = discord.Colour.red())
                 emb.set_footer(text = "This will be deleted in 10 seconds.")
                 await after.channel.send(content = f"😡 | {after.author.mention}", embed = emb, delete_after = 10)
 
@@ -62,8 +62,8 @@ class AntiLol(commands.Cog):
     @commands.has_permissions(manage_messages = True)
     @commands.bot_has_permissions(manage_messages = True)
     async def enable(self, ctx):
-        
-        "Enable the Anti Lol"
+
+        "Enable the Anti Lel"
 
         with open("data/guilds.json", "r") as f:
             l = json.load(f)
@@ -73,36 +73,36 @@ class AntiLol(commands.Cog):
         #    guilds.append(a)
 
         if str(ctx.guild.id) in l:
-            emb = discord.Embed(description = f"❌ | **{ctx.guild.name}**'s Anti Lol is already enabled!", colour = discord.Colour.red())
+            emb = discord.Embed(description = f"❌ | **{ctx.guild.name}**'s Anti Lel is already enabled!", colour = discord.Colour.red())
             return await ctx.send(embed = emb)
 
-        l[str(ctx.guild.id)] = {"mods": "enabled"}       
+        l[str(ctx.guild.id)] = {"mods": "enabled"}
 
         with open("data/guilds.json", "w") as f:
             json.dump(l, f, indent = 4)
 
-        emb = discord.Embed(description = f"✅ | Anti Lol enabled for **{ctx.guild.name}**.", colour = discord.Colour.red())
+        emb = discord.Embed(description = f"✅ | Anti Lel enabled for **{ctx.guild.name}**.", colour = discord.Colour.red())
         await ctx.send(embed = emb)
 
     @commands.command()
     @commands.has_permissions(manage_permissions = True)
     @commands.bot_has_permissions(manage_messages = True)
     async def disable(self, ctx):
-        
-        "Disable the Anti Lol"
+
+        "Disable the Anti Lel"
 
         with open("data/guilds.json", "r") as f:
             l = json.load(f)
 
         if str(ctx.guild.id) not in l:
-            emb = discord.Embed(description = f"❌ | Anti Lol is not enabled in **{ctx.guild.name}**!", colour = discord.Colour.red())
+            emb = discord.Embed(description = f"❌ | Anti Lel is not enabled in **{ctx.guild.name}**!", colour = discord.Colour.red())
             return await ctx.send(embed = emb)
 
         else:
             l.pop(str(ctx.guild.id))
             with open("data/guilds.json", "w") as f:
                 json.dump(l, f, indent = 4)
-            emb = discord.Embed(description = f"✅ | Anti Lol disabled for **{ctx.guild.name}**.", colour = discord.Colour.red())
+            emb = discord.Embed(description = f"✅ | Anti Lel disabled for **{ctx.guild.name}**.", colour = discord.Colour.red())
             await ctx.send(embed = emb)
 
     @commands.command(usage = "[enable | disable]", aliases = ["mod"])
@@ -110,38 +110,38 @@ class AntiLol(commands.Cog):
     @commands.bot_has_permissions(manage_messages = True)
     async def mods(self, ctx, enable_disable: str):
 
-        "Set if mods can say lol"
+        "Set if mods can say lel"
 
         with open("data/guilds.json", "r") as f:
             l = json.load(f)
 
         if str(ctx.guild.id) not in l:
-            emb = discord.Embed(description = f"❌ | Anti Lol is not enabled in **{ctx.guild.name}**! Enable with `enable`", colour = discord.Colour.red())
+            emb = discord.Embed(description = f"❌ | Anti Lel is not enabled in **{ctx.guild.name}**! Enable with `enable`", colour = discord.Colour.red())
             return await ctx.send(embed = emb)
 
         if enable_disable.lower() == "enable":
             if l[str(ctx.guild.id)]["mods"] == "enabled":
-                emb = discord.Embed(description = f"❌ | Mods Option is already enabled, mods can send **lol**s!", colour = discord.Colour.red())
+                emb = discord.Embed(description = f"❌ | Mods Option is already enabled, mods can send **lel**s!", colour = discord.Colour.red())
                 return await ctx.send(embed = emb)
             l[str(ctx.guild.id)]["mods"] = "enabled"
 
             with open("data/guilds.json", "w") as f:
                 json.dump(l, f, indent = 4)
 
-            emb = discord.Embed(description = f"✅ | Mods option enabled for **{ctx.guild.name}**. Mods can now send **lol**s.", colour = discord.Colour.red())
+            emb = discord.Embed(description = f"✅ | Mods option enabled for **{ctx.guild.name}**. Mods can now send **lel**s.", colour = discord.Colour.red())
             await ctx.send(embed = emb)
 
         elif enable_disable.lower() == "disable":
             if l[str(ctx.guild.id)]["mods"] == "disabled":
-                emb = discord.Embed(description = f"❌ | Mods Option is already disabled, mods can't send **lol**s!", colour = discord.Colour.red())
+                emb = discord.Embed(description = f"❌ | Mods Option is already disabled, mods can't send **lel**s!", colour = discord.Colour.red())
                 return await ctx.send(embed = emb)
             l[str(ctx.guild.id)]["mods"] = "disabled"
 
             with open("data/guilds.json", "w") as f:
                 json.dump(l, f, indent = 4)
 
-            emb = discord.Embed(description = f"✅ | Mods option disabled for **{ctx.guild.name}**. Mods can't send **lol**s.", colour = discord.Colour.red())
+            emb = discord.Embed(description = f"✅ | Mods option disabled for **{ctx.guild.name}**. Mods can't send **lel**s.", colour = discord.Colour.red())
             await ctx.send(embed = emb)
 
 def setup(bot):
-    bot.add_cog(AntiLol(bot))
+    bot.add_cog(AntiLel(bot))

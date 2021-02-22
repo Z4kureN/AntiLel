@@ -15,13 +15,13 @@ class Help(commands.Cog):
         prf = "~"
 
         error = f'```css\nThat command, "{command}", does not exist!\n```'
-    
+
         emb = discord.Embed(title = "Help", colour = discord.Colour.red())
         emb.set_thumbnail(url = self.bot.user.avatar_url)
         emb.set_footer(text = f"Need help about a command? Try {prf}help [command]")
-        
+
         if command:
-            
+
             cmd = self.bot.get_command(command)
 
             if not cmd:
@@ -36,7 +36,7 @@ class Help(commands.Cog):
 
                 else:
                     emb.add_field(value = f'`{prf}{cmd.name} {cmd.signature}`', name = cmd.help, inline = False)
-            
+
                 if cmd.aliases:
                     aliases = ""
 
@@ -46,11 +46,11 @@ class Help(commands.Cog):
 
             try:
                 commands = ""
-                
+
                 for a in cmd.commands:
-                
+
                     commands += f"`{prf}{cmd.name} {a.name} {a.signature}`\n"
-                
+
                 emb.add_field(name = "Subcommands", value = commands, inline = False)
 
             except:
@@ -66,18 +66,18 @@ class Help(commands.Cog):
 
             if not c.hidden:
 
-                antilol = ""
+                antilel = ""
 
                 for a in self.bot.commands:
-                    if a.cog_name == "AntiLol":
+                    if a.cog_name == "AntiLel":
                         if not a.hidden:
-                            antilol += f"`{a.name} {a.signature}` | {a.help}\n"
+                            antilel += f"`{a.name} {a.signature}` | {a.help}\n"
 
                             try:
-                            
+
                                 for b in a.commands:
 
-                                    antilol += f"`{a.name} {b.name} {b.signature}` | {b.help}\n"
+                                    antilel += f"`{a.name} {b.name} {b.signature}` | {b.help}\n"
 
                             except:
 
@@ -91,7 +91,7 @@ class Help(commands.Cog):
                             misc += f"`{a.name} {a.signature}` | {a.help}\n"
 
                             try:
-                            
+
                                 for b in a.commands:
 
                                     misc += f"`{a.name} {b.name} {b.signature}` | {b.help}\n"
@@ -102,7 +102,7 @@ class Help(commands.Cog):
 
                 emb.description = f"""[Support Server](https://discord.gg/w8cbssP)"""
 
-        emb.add_field(name = "AntiLol", value = antilol, inline = False)
+        emb.add_field(name = "AntiLel", value = antilel, inline = False)
         emb.add_field(name = "Misc", value = misc, inline = False)
         await ctx.send(embed = emb)
 

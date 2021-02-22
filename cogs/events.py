@@ -20,7 +20,7 @@ class Events(commands.Cog):
 
         if guild.banner:
             emb.set_image(url = guild.banner_url)
-        
+
         await ch.send(embed = emb)
 
     @commands.Cog.listener()
@@ -35,10 +35,10 @@ class Events(commands.Cog):
 🍰 | Created at {guild.created_at.strftime("%m / %d / %Y (%H:%M)")}""", colour = discord.Colour.red())
         emb.set_footer(text = f"{len(self.bot.guilds)} guilds", icon_url = self.bot.user.avatar_url)
         emb.set_thumbnail(url = guild.icon_url)
-        
+
         if guild.banner:
             emb.set_image(url = guild.banner_url)
-        
+
         await ch.send(embed = emb)
 
     @commands.Cog.listener()

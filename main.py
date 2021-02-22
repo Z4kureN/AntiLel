@@ -12,7 +12,7 @@ bot.load_extension("jishaku")
 @bot.event
 async def on_ready():
     print("Ready as", bot.user)
-    await bot.change_presence(status = discord.Status.dnd, activity = discord.Activity(type = discord.ActivityType.listening, name = "LEL is better!"))
+    await bot.change_presence(status = discord.Status.dnd, activity = discord.Activity(type = discord.ActivityType.listening, name = "LUL is better!"))
 
 for a in os.listdir("./cogs"):
     if a.endswith(".py"):
